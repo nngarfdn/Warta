@@ -7,41 +7,35 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.squareup.picasso.Picasso
 import com.udindev.warta.R
 import com.udindev.warta.fragment.DetailNewsFragment
 import com.udindev.warta.model.ArticlesItem
 import com.udindev.warta.utils.toSimpleString
-import jp.wasabeef.glide.transformations.GrayscaleTransformation
-import kotlinx.android.synthetic.main.item_menu_top.view.*
+import kotlinx.android.synthetic.main.item_news.view.*
 
 
-class TopNewsAdapter(private val list: List<ArticlesItem?>?) :
-    RecyclerView.Adapter<TopNewsAdapter.ViewHolder>() {
+class ListNewsAdapter(private val list: List<ArticlesItem?>?) :
+    RecyclerView.Adapter<ListNewsAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_menu_top, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
     )
 
     override fun getItemCount(): Int = list?.size!!
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        Glide.with(holder.itemView.context)
-                .load(list?.get(position)?.urlToImage)
-                .apply(bitmapTransform(GrayscaleTransformation()))
-                .centerCrop()
-                .into(holder.itemView.image_news)
-
+        Picasso.get()
+            .load(list?.get(position)?.urlToImage)
+            .placeholder(R.drawable.ic_baseline_image_24)
+            .into(holder.itemView.image_news)
         holder.itemView.txt_title.text = list?.get(position)?.title
-
+        holder.itemView.txt_time.text = toSimpleString(list?.get(position)?.publishedAt!!)
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString(DetailNewsFragment.EXTRA_URL, list?.get(position)?.url)
+            bundle.putString(DetailNewsFragment.EXTRA_URL, list.get(position)?.url)
             val fragment = DetailNewsFragment()
             fragment.arguments = bundle
 

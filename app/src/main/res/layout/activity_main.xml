@@ -6,23 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <FrameLayout
+        android:id="@+id/framelayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="800dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+ <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/bottomNavigation"
+      app:mbn_circleColor="@color/colorAccent"
+      app:mbn_selectedIconColor="@android:color/white"
+      app:mbn_rippleColor="@android:color/white"
+      app:mbn_defaultIconColor="@android:color/white"
+      app:mbn_backgroundBottomColor="@color/colorAccent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

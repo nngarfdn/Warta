@@ -10,28 +10,28 @@ class ViewPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         var fragment : Fragment? = null
         when(position) {
-            0 -> fragment = TopFragment()
-            1 -> fragment = SportFragment()
-            2 -> fragment = BisnisFragment()
-            3 -> fragment = SainFragment()
-            4 -> fragment = TeknoFragment()
+            0 -> fragment = HomeFragment()
+            1 -> fragment = TopFragment()
+            2 -> fragment = SportFragment()
+            3 -> fragment = BisnisFragment()
+
         }
         return fragment!!
     }
 
     override fun getCount(): Int {
-        return 5
+        return 4
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         var title : String ? = null
 
         when(position){
-            0 -> title = "TOP"
-            1 -> title = "SPORT"
-            2 -> title = "BISNIS"
-            3 -> title = "SAINS"
-            4 -> title = "TECH"
+            0 -> title = "HOME"
+            1 -> title = "TOP"
+            2 -> title = "SPORT"
+            3 -> title = "BISNIS"
+
         }
         return  title
     }

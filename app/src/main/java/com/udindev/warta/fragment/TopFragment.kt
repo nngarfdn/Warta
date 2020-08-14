@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.iniudin.githubuserapp.adapter.TopNewsAdapter
+import com.iniudin.githubuserapp.adapter.ListNewsAdapter
 import com.udindev.warta.R
 import com.udindev.warta.model.News
 import com.udindev.warta.viewmodel.TopViewModel
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_top.*
 class TopFragment : Fragment() {
 
     private lateinit var topViewModel: TopViewModel
-    private lateinit var adapter: TopNewsAdapter
+    private lateinit var adapter: ListNewsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,7 @@ class TopFragment : Fragment() {
             })
             topViewModel.getResults().observe(this, Observer<News> { result ->
                 Log.d("TopFragment", result.toString())
-                adapter = TopNewsAdapter(result.articles)
+                adapter = ListNewsAdapter(result.articles)
                 rv_topnews.adapter = adapter
                 initRecView()
             })
@@ -72,5 +72,11 @@ class TopFragment : Fragment() {
         val connect: ConnectivityManager =
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return connect.activeNetworkInfo != null && connect.activeNetworkInfo!!.isConnected
+    }
+
+    companion object {
+        fun newIntance(): TopFragment {
+            return TopFragment()
+        }
     }
 }

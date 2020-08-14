@@ -24,4 +24,12 @@ class ConfigNetwork {
     fun getResultsTopNews(): Call<News> {
         return service.getTopNews()
     }
+
+    fun getResultsSportNews(): Call<News> {
+        return service.getSportNews()
+    }
+
+    fun getResultBussinesNews() : Call<News> {
+        return service.getBussinesNews()
+    }
 }
